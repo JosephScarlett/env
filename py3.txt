@@ -1,0 +1,20 @@
+py3
+    numpy
+    matplotlib
+    seaborn
+    pandas
+    pytorch
+    sklearn
+    keras
+    beautifulsoup
+    scrapy
+    openpyssl
+
+    toolz
+    spacy
+    textblob
+    nltk
+
+miniconda && pyenv
+
+

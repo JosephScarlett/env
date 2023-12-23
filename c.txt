@@ -1,0 +1,26 @@
+libs
+    cURL
+    GLib
+    GSL
+    SQLite3
+
+    libc
+
+    ffmpeg
+    opengl
+    glew
+    glfw
+    cimg
+    tesseract
+
+    libjpeg
+    libexif
+    libspng
+    llglv
+
+    opencv
+
+c.vim 
+    iab 
+    syntax
+
