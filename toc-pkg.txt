@@ -1,0 +1,31 @@
+work environment
+    compiler    gcc
+    debugger    gdb / gdb-gef
+    memory      valgrind
+    emulator    qemu
+    profiler    pprof / wcet
+    buildutil   make
+    pkg-mngr    pkg-config
+    txt-edtr    vim
+    ver-ctrl    git
+    fuzzy       AFL
+
+    arm-none-eabi
+    arm-none-linux-gnueabihf
+    aarch64-none-elf
+    aarch64-none-linux-gnu
+    aarch64_be-none-linux-gnu
+
+sudo apt-get install build-essentials git python3 qemu gdb-multiarch
+sudo apt-get install libc6-armhf-cross 
+
+git clone https://github.com/google/AFL.git
+cd AFL && make
+
+git clone https://github.com/apogiatzis/gdb-ped-pwndbg-gef.git
+cd gdb-ped-pwndbg-gef.git
+./install.sh
+
+open https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads
+
+
