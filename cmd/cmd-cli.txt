@@ -1,0 +1,22 @@
+
+file-ops
+
+
+
+
+
+
+
+
+file-ops
+
+MOVE 
+single file to directory
+multi files to directory
+w/ end in files to dir
+of list of files into dir
+
+mv fil.ext dir/
+mv fil.ext fil.ext dir/
+mv *.ext dir/
+xargs -I {} mv {} dir/ < list.txt

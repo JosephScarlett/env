@@ -1,0 +1,37 @@
+reptition
+. again
+
+delete
+NORMAL
+daw word
+dd eol
+
+INSERT
+<CU> cursor to bol
+
+copy-paste multi-line
+copy current line & put it below # lines
+:t2<ENTER>
+copy # line & put it below current line
+:3t.<ENTER>
+copy #l, #l & put it below current lien
+
+
+replace
+change word into _word in file
+:%s/<CR><CW>/_word/<ENTER>
+
+replace multi-line
+replace first char in 2r
+<CV>jc#<ESC>
+
+append multi-line
+append 2r eol _insterted char 
+<CV>j$A_inserted<ESC>
+
+
+
+
+calculated
+insert results multiplied
+<CR>=10*10<ENTER>
