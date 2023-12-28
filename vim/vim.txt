@@ -1,0 +1,48 @@
+
+
+LEADER        prefix key, id to do <leader>
+              :let mapleader="_key"
+LOCAL LEADER  file-type prefix key <localleader>
+              :let maplocalleader="_key"
+
+mode mapping  [nvico]map
+custom map    [niv]noremap _key _map
+display maps  :verbose map
+display abbr  :ab 
+
+ABBREVIATIONS ins,rpl,cmd modes
+              :iab _cmd _action
+KEYWORDS      sub abbr typeing non-key chars 
+
+BUFFERS       add a way to namespace localleader <buffer>
+AUTOCMDS      run certain cmds during events
+              :autocmd BufNewFile * :w
+  BufNewFile  event id
+  *           pattern, ex. *.html files
+  BufWritePre event before writing
+
+additional events can be added via comma on buffer event type
+  FileType    sets a buffer filetype
+
+Buffer-Local Abbr
+:autocmd Filetype javascript :iab <BUFFER> iff if()<LEFT>
+
+GROUP AUTOCMD 
+  augroup _grp()
+    autocmd! "clear autocmds 
+    _ops
+  augroup END
+
+  :normal _cmd    take set of chars & perform action type in normal mode
+  :execute "_cmd" execute a vim command 
+
+GLOBAL VIM
+autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+insert
+inoremap jjn <esc>
+
+delete inside ()
+delete contents ()
+:onoremap p i( 
+:onoremap in( :<c-u>normal! f(vi(<cr>
+:onoremap il( :<c-u>normal! F)vi(<cr>
