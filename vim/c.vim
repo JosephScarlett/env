@@ -1,23 +1,45 @@
 iab cm <ESC>A /*<CR>*/ <ESC>O
-iab inc #include<.h"><LEFT><LEFT><LEFT><LEFT>
+iab inc #include<.h><LEFT><LEFT><LEFT>
 iab incu #include.h"<LEFT><LEFT><LEFT>
 iab def #define
 iab vmain void main()<ESC>A {<CR>}<ESC>O<TAB>
 iab imain int main()<ESC>A {<CR>}<ESC>O<TAB>
-iab uc unsigned char
-iab ui unsigned int
+iab ucc unsigned char
+iab uii unsigned int
+iab uss unsigned short
+iab ull unsigned long
+iab ulll unsigned long long
+iab cucc (unsigned char)
+iab cuii (unsigned int)
+iab cuss (unsigned short)
+iab cull (unsigned long)
+iab culll (unsigned long long)
 
+iab ss short
+iab css (short)
+iab p *
+iab ret return
+iab ii int
+iab ll long
+iab lll long long
+iab ff float
+iab dd double
+iab cc char
+iab vv void
+iab cvv (void)
 
-iab pf print("\n");<ESC>6<LEFT>i
-iab pfi print("%\n",);<ESC>8<LEFT>i
-iab sf scanf("%s",);<ESC>2<LEFT>i
-iab sfi scanf("%d",&);<ESC>2<LEFT>i
-iab rng (<a)&&(<a)<ESC>8<LEFT>i
-iab orng (<a)&&(>b)<ESC>8<LEFT>i
+iab pf print("\n");<ESC>5hi
+iab pfi print("%\n",);<ESC>8hi
+iab sf scanf("%s",);<ESC>2hi
+iab sfi scanf("%d",&);<ESC>2hi
+iab rng (<a)&&(<a)<ESC>8hi
+iab orng (<a)&&(>b)<ESC>8hi
 
 iab bb <ESC>A {<CR>}<ESC>O
 iab br {}<LEFT>
-iab if if(){<CR>}<ESC>O<TAB>
+iab bc ()<LEFT>
+iab if if()<LEFT>
+iab ifb if(){<CR>}<ESC>O<TAB>
 iab elif else if <ESC>A {<CR>}<ESC>O
 iab else else{}<LEFT><LEFT>
 iab swi switch(){<CR>case '': <CR>  break; <CR>default: <CR>}
@@ -25,14 +47,15 @@ iab swi switch(){<CR>case '': <CR>  break; <CR>default: <CR>}
 iab ex extern
 iab ve volatile
 iab rr register
-iab sc static  
+iab sc static
 iab vuc volatile unsigned char
-iab vui volatile unsigned int 
+iab vui volatile unsigned int
 iab sci static int
 
 iab sof sizeof()<LEFT>
 iab tdf typedef
 iab inl inline
+iab struc struct
 iab struct struct{<CR>}<ESC>O<TAB>
 
 iab iif #if
@@ -48,12 +71,14 @@ iab prag #pragma
 iab mat m[][] = {0};
 iab arr a[] = {};
 
-iab i8 int8_t
-iab i16 int16_t
-iab i32 int32_t
-iab u8 uint8_t
-iab u16 uint16_t
-iab u32 uint32_t
+iab ib int8_t
+iab ih int16_t
+iab iw int32_t
+iab idw int64_t
+iab ub uint8_t
+iab uh uint16_t
+iab uw uint32_t
+iab udw uint64_t
 
 iab tera 1e12
 iab giga 1e9
@@ -68,19 +93,25 @@ iab pico 1e-12
 iab w1 while(1);
 iab wh while(){<CR>}<ESC>O<TAB>
 iab dowh do{<CR>}while();<ESC>O<TAB>
-iab for for(;;);
-iab ff for(int a=0;a<b;a++){<CR>}<ESC>O<TAB>
-iab fb for(int a=0;a>b;a--){<CR>}<ESC>O<TAB>
+iab fi for(;;);
+iab ff for(a=0;a<b;a++){<CR>}<ESC>O<TAB>
+iab fb for(a=0;a>b;a--){<CR>}<ESC>O<TAB>
+iab fv for(; a!=0;a--){<CR>}<ESC>O<TAB>
+iab fd for(a=;a!=0;a--){<CR>}<ESC>O<TAB>
 
 iab .. -> 
 
 syn region cQuotes start="\"" end="\""
 syn region cQuote start="\'" end="\'"
+syn match cInclude "#include\*s<\zs.\{-}\ze>" contains=cAngle,cHeader
+syn match cAngle "[<>]" contained
+syn match cHeader contained "\(\.\|/\)\w\+\.\w\+" contained
 syn match cHeader "\v\w+\.h\b"
-highlight cComment ctermfg=8
-highlight cQuotes ctermfg=1
-highlight cQuote ctermfg=29
-highlight cHeader ctermfg=126
+hi cComment ctermfg=8
+hi cQuotes ctermfg=1
+hi cQuote ctermfg=29
+hi cHeader ctermfg=126
+hi cAngle ctermfg=125
 syn match cEnd ";"
 hi cEnd ctermfg=8
 syn match cBrackets "[{}]"
@@ -89,7 +120,7 @@ syn match cBraces "(\|)"
 highlight cBraces ctermfg=3
 
 syn match cHash "#\w\+" 
-highlight cHash ctermfg;=52
+highlight cHash ctermfg=52
 
 syn match cAssign "[-+\^\\*/%|]="
 syn match cAssign "<<=\|>>="

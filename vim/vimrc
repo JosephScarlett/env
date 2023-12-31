@@ -1,0 +1,79 @@
+filetype on
+filetype indent on
+syntax on
+set t_Co=256
+set number
+set mouse=a
+set nobackup
+set clipboard=unnamedplus
+set nofoldenable
+set foldmethod=indent
+set wildmenu
+set wildmode=list:longest
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.exe*,*.flv,*.img,*.xlxs
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set smartindent
+set expandtab
+
+set timeoutlen=80
+set ttimeoutlen=500
+let mapleader=";"
+let maplocalleader=","
+nnoremap <LEADER>cc :set colorcolumn=80<CR>
+nnoremap <LEADER>ncc :set colorcolumn=0<CR>
+nnoremap <LEADER>d <C-w>s
+nnoremap <LEADER>f <C-w>v
+nnoremap <TAB> <C-w>w
+noremap <LEADER>q <c-w>q
+nnoremap <LEADER>m :find *<cr>
+nnoremap <LEADER>t :tabnew<cr>
+nnoremap <LEADER>n :tabnext<cr>
+nnoremap <LEADER>tm :tabmove
+nnoremap <LEADER>tc :tabclose<cr>
+nnoremap <LEADER>to :tabonly<cr>
+inoremap ;j <esc>
+
+"include search paths
+"set path+=~/C**
+
+augroup python_config
+    autocmd!
+    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab smartindent
+augroup END
+
+augroup c_cfg
+    autocmd!
+    autocmd FileType c,h setlocal tabstop=2 shiftwidth=2 softtabstop=2
+"    au BufRead,BufNewFile *.c source %:p:h/c.vim
+    au BufRead,BufNewFile *.c,*.h source /home/scarlettjwork/env/vim/c.vim
+augroup END
+
+augroup html_cfg
+    autocmd!
+    au BufRead,BufNewFile *.html source %:p:h/html.vim
+augroup END
+
+nnoremap <leader>c :call FoldColumnToggle()<cr>
+function! FoldColumnToggle()
+    if &foldcolumn
+        setlocal foldcolumn=0
+    else
+        setlocal foldcolumn=4
+    endif
+endfunction
+
+let g:quickfix_is_open = 0
+nnoremap <leader>c :call QuickfixToggle()<cr>
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return2_window . "wincmd w"
+    else
+        let g:quickfix_return2_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
