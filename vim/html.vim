@@ -1,6 +1,6 @@
 
 
-iab init <!DOCTYPE html><CR><html><CR><head><CR><title></title><CR></head><CR><body><CR></body><CR></html><ESC><UP><UP>O<TAB>
+iab ii <!DOCTYPE html><CR><html><CR><head><CR><title></title><CR></head><CR><body><CR></body><CR></html><ESC><UP><UP>O<TAB>
 
 iab div <div><CR></div><ESC>O<TAB>
 iab main <main><CR></main><ESC>O<TAB>

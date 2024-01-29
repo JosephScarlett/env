@@ -1,20 +1,20 @@
 "VIM Functions
 
 "Formats
-function! FormatVimDic(lines)
-  let format_lines=[]
+function! FmtDict(lines)
+  let fmtlns=[]
   for i in range(len(a:lines))
     let line=a:lines[i]
     let char=nr2char(97+i%26)
     let form="\\ '".char."':'".escape(line,"'")."',"
-    call add(format_lines,form)
+    call add(fmtlns,form)
   endfor
-  return join(format_lines,"\n")
+  return join(fmtlns,"\n")
 endfunction
 
-function! FormatList(lines)
-    let format_lines = map(copy(a:lines), {idx, val -> "'" . escape(val, "'") . "'"})
-    let form = '[' . join(format_lines, ', ') . ']'
+function! FmtList(lines)
+    let fmtlns = map(copy(a:lines), {idx, val -> "'" . escape(val, "'") . "'"})
+    let form = '[' . join(fmtlns, ', ') . ']'
     return form
 endfunction
 
@@ -27,22 +27,22 @@ function! Format()
   endif
 
   let lines=readfile(file)
-  let format_out=FormatVimDic(lines)
+  let format_out=FmtDict(lines)
 
   let set_cursor=getpos('.')
   call append(line('.'), split(format_out, '\n'))
   call setpos('.', set_cursor)
 endfunction
 
-function! InFormat()
+function! Iformat()
   let form=input('SEL OPT: dic|lst: ')
   let user_input=input("User input space seperate words: ")
   let words=split(user_input)
 
   if form=='dic'
-    let format=FormatVimDic(words)
+    let format=FmtDict(words)
   elseif form=='lst'
-    let format=FormatList(words)
+    let format=FmtList(words)
   else
     echo "INVALID SELECT"
     return
