@@ -1,58 +1,68 @@
-filetype on
-filetype indent on
 syntax on
+filetype plugin on
 set t_Co=256
 set number
 set mouse=a
 set nobackup
-set clipboard=unnamedplus
+set cb=unnamedplus
 set nofoldenable
 set foldmethod=indent
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.exe*,*.flv,*.img,*.xlxs
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set smartindent
-set expandtab
+set ts=4 sts=4 sw=4 et ai si
+se cpt+=k
+se cpt+=s
+se cpt+=i
+se cpt+=t
+set incsearch
+
+set cursorline
+set culopt=number
 
 set timeoutlen=80
 set ttimeoutlen=500
 let mapleader=";"
 let maplocalleader=","
-nnoremap <LEADER>cc :set colorcolumn=80<CR>
-nnoremap <LEADER>ncc :set colorcolumn=0<CR>
-nnoremap <LEADER>d <C-w>s
+
+nnoremap <LEADER>g <C-w>s
 nnoremap <LEADER>f <C-w>v
 nnoremap <TAB> <C-w>w
 noremap <LEADER>q <c-w>q
-nnoremap <LEADER>m :find *<cr>
-nnoremap <LEADER>t :tabnew<cr>
-nnoremap <LEADER>n :tabnext<cr>
+nnoremap <LEADER>m :find *<CR>
+nnoremap <LEADER>t :tabnew<CR>
+nnoremap <LEADER>n :tabnext<CR>
 nnoremap <LEADER>tm :tabmove
-nnoremap <LEADER>tc :tabclose<cr>
-nnoremap <LEADER>to :tabonly<cr>
-inoremap ;j <esc>
+nnoremap <LEADER>tc :tabclose<CR>
+nnoremap <LEADER>to :tabonly<CR>
+inoremap <LEADER>j <esc>
+nnoremap <LEADER><SPACE> :w<CR>:so ~/.vimrc<CR>
 
-"include search paths
-"set path+=~/C**
+colorscheme colorcfg
+let bdir = '/home/scarlettjwork/env/vim/'
+
+function! SafeSourceVimFiles()
+  let current_dir = expand('%:p:h')
+  let vim_files = split(globpath(current_dir, '*.vim'), '\n')
+  for file in vim_files
+    " Example check: Avoid sourcing if the file contains syntax commands
+    if match(readfile(file), 'syntax') == -1
+      execute 'source' file
+    endif
+  endfor
+endfunction
+
+autocmd BufReadPost,BufNewFile * call SafeSourceVimFiles()
 
 augroup python_config
     autocmd!
-    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab smartindent
+    autocmd FileType python setlocal ts=4 sw=4 sts=4 et si
 augroup END
 
-augroup c_cfg
+augroup lang_synt
     autocmd!
-    autocmd FileType c,h setlocal tabstop=2 shiftwidth=2 softtabstop=2
-"    au BufRead,BufNewFile *.c source %:p:h/c.vim
     au BufRead,BufNewFile *.c,*.h source /home/scarlettjwork/env/vim/c.vim
-augroup END
-
-augroup html_cfg
-    autocmd!
-    au BufRead,BufNewFile *.html source %:p:h/html.vim
+    au BufRead,BufNewFile *.c,*.h source  /home/scarlettjwork/env/vim/cab.vim
 augroup END
 
 nnoremap <leader>c :call FoldColumnToggle()<cr>
