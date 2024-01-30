@@ -14,6 +14,8 @@ iab defs #define SIZE
 iab szz SIZE
 iab hcolor #define fg(c) ("\033[38;5;"#c"m")<CR>#define rs "\033[0m"<CR>
 
+iab attr _attribute_
+
 iab vmain void main(){<CR>}<ESC>O
 iab imain int main(){<CR>}<ESC>O
 iab amain int main(int argc,char*argv[]){<CR>}<ESC>O
@@ -38,13 +40,17 @@ iab fnp (* )();
 iab fnpi int (* )(int);
 iab fnpc char (* )(char);
 iab .. ->
-iab nq != 
+iab le <=
+iab ge >=
+iab nq !=
 iab eq ==
 iab eqo ==1
 iab eqz ==0
-iab ng ~ 
+iab ng ~
 iab or ^
-iab mo % 
+iab mo %
+iab mod %d
+iab mos %s
 iab modi %s%s<LEFT><LEFT>
 iab modp %s%p%s
 iab modd %s%d%s
@@ -74,6 +80,7 @@ iab stb struct{};<LEFT><LEFT>
 iab stnl struct{<CR>};<ESC>O
 
 iab cc char
+iab ccc const char
 iab ccp (*char)
 iab ii int
 iab iip (*int)
@@ -100,23 +107,24 @@ iab if if()<LEFT>
 iab ifb if(){<CR>}<ESC>O
 iab elif else if()<LEFT>
 iab elifb else if(){<CR>}<ESC>O
-iab else else{}<LEFT><LEFT>
+iab else else{}<LEFT>
 iab nulb '\0'
 
-iab swi switch(){<CR>}<ESC>O<TAB>
+iab swi switch(){<CR>}<ESC>O
 iab cas case '':
+iab sbr break; 
 iab sdf default:
 
 iab winf while(1);
 iab wh while(){}<LEFT><LEFT><LEFT>
-iab dow do{<CR>}while();<ESC>O<TAB>
+iab dow do{<CR>}while();<ESC>O
 
 iab finf for(;;);
 iab for for(){}<LEFT><LEFT><LEFT>
-iab ff for(int a=0;a<;a++){<CR>}<ESC>O
-iab fb for(int a=0;a>;a--){<CR>}<ESC>O
-iab fv for(; a!=0;a--){<CR>}<ESC>O
-iab fd for(int a=;a!=0;a--){<CR>}<ESC>O
+iab ff for(int i=0;i<;i++){<CR>}<ESC>O
+iab fb for(int i=0;i>;i--){<CR>}<ESC>O
+iab fv for(; i!=0;i--){<CR>}<ESC>O
+iab fd for(int i=;i!=0;a--){<CR>}<ESC>O
 
 iab hif #if
 iab hifd #ifdef
