@@ -5,14 +5,18 @@ iab xxi int num, *p, p=&num;
 
 iab cm /*<CR>*/ <ESC>O
 iab inc #include
-iab stdio #include<stdio.h><CR>
-iab hstring #include<string.h><CR>
-iab stdlib #include<stdlib.h><CR>
-iab hmath #include<math.h><CR>
+iab stdio #include <stdio.h><CR>
+iab hstring #include <string.h><CR>
+iab stdlib #include <stdlib.h><CR>
+iab stdbool #include <stdbool.h><CR>
+iab hmath #include <math.h><CR>
+iab termios #include <termios.h><CR>
+iab unistd #include <unistd.h><CR>
 iab def #define
 iab defs #define SIZE  
 iab szz SIZE
-iab hcolor #define fg(c) ("\033[38;5;"#c"m")<CR>#define rs "\033[0m"<CR>
+iab dcolor #define fg(c) ("\033[38;5;"#c"m")<CR>#define rs "\033[0m"<CR>#define pc(w,c) (printf("%s"#w"%s\n",fg(#c),rs);<CR>
+iab ddata #define C char<CR>#define I int<CR>#define L long<CR>#define F float<CR>#define D double<CR>
 
 iab attr _attribute_
 
@@ -58,7 +62,6 @@ iab mods %s%s%s
 
 iab pf printf("\n");<LEFT><LEFT><LEFT><LEFT><LEFT>
 iab pfi printf("%\n",);<LEFT><LEFT><LEFT><LEFT>
-iab pfc printf("%s %s\n",fg(11),rs);<ESC>18h
 iab sf scanf("%s",);<LEFT><LEFT><LEFT><LEFT>
 iab sfi scanf("%d",&);<LEFT><LEFT><LEFT><LEFT>
 iab irng (lb<a)&&(ub<a)
@@ -100,10 +103,13 @@ iab u8 uint8_t
 iab u16 uint16_t
 iab u32 uint32_t
 
-iab mtb m[][] = {0};
-iab arb a[] = {0};
+iab cbb c[][][] = {};<LEFT><LEFT>
+iab mtb m[][] = {};<LEFT><LEFT>
+iab arb a[] = {};<LEFT><LEFT>
 
 iab if if()<LEFT>
+iab ifod if(i%2==1)
+iab ifev if(i%2==0)
 iab ifb if(){<CR>}<ESC>O
 iab elif else if()<LEFT>
 iab elifb else if(){<CR>}<ESC>O
@@ -121,10 +127,12 @@ iab dow do{<CR>}while();<ESC>O
 
 iab finf for(;;);
 iab for for(){}<LEFT><LEFT><LEFT>
-iab ff for(int i=0;i<;i++){<CR>}<ESC>O
-iab fb for(int i=0;i>;i--){<CR>}<ESC>O
-iab fv for(; i!=0;i--){<CR>}<ESC>O
-iab fd for(int i=;i!=0;a--){<CR>}<ESC>O
+iab ff for(int i=0;i<n;i++){}<LEFT>
+iab frs for(int i=0;s[i];i++){}<LEFT>
+iab fith for(int i=0;i<n;i+=ith){}<LEFT>
+iab fb for(int i=0;i>n;i--){}<LEFT>
+iab fv for(; i!=0;i--){}<LEFT>O
+iab fd for(int i=;i!=0;a--){}<LEFT>
 
 iab hif #if
 iab hifd #ifdef
