@@ -38,6 +38,12 @@ nnoremap <LEADER>to :tabonly<CR>
 inoremap <LEADER>j <esc>
 nnoremap <LEADER><SPACE> :w<CR>:so ~/.vimrc<CR>
 
+iab xx <BS><ESC>A<LEFT><LEFT>
+iab xxbk <BS><ESC>A{<SPACE>}<LEFT>
+iab xxbc <BS><ESC>A[<SPACE>]<LEFT>
+iab qq <BS>",<ESC>A"
+iab qqs <BS>',<ESC>A'
+
 colorscheme colorcfg
 let bdir = '/home/scarlettjwork/env/vim/'
 

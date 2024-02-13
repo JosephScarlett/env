@@ -2,6 +2,9 @@ iab xpt int *p;
 iab xcp const int *p;
 iab xad int *p = &num;
 iab xxi int num, *p, p=&num;
+iab sqx1 =0x00, =0x01
+iab sqx2 =0x00, =0x01, =0x02
+iab sqx3 =0x00, =0x01, =0x02, =0x03
 
 iab cm /*<CR>*/ <ESC>O
 iab inc #include
@@ -15,9 +18,14 @@ iab unistd #include <unistd.h><CR>
 iab def #define
 iab defs #define SIZE  
 iab szz SIZE
-iab dcolor #define fg(c) ("\033[38;5;"#c"m")<CR>#define rs "\033[0m"<CR>#define pc(w,c) (printf("%s"#w"%s\n",fg(#c),rs);<CR>
-iab ddata #define C char<CR>#define I int<CR>#define L long<CR>#define F float<CR>#define D double<CR>
-
+iab dprint #define nl printf("\n")<CR>
+iab dcolor #define fg(c) ("\033[38;5;"#c"m")<CR>#define rs "\033[0m"<CR>#define pc(w,c) (printf("%s"#w"%s\n",fg(c),rs))<CR>
+iab ddata #define V void<CR>#define C char<CR>#define I int<CR>#define L long<CR>#define F float<CR>#define D double<CR>
+iab dpf #define P printf
+iab daddr #define LOCa(hex) ((uint8_t)0x#hex)<CR>#define LOCb(hex) ((uint16_t)0x#hex)<CR>#define LOCc(hex) ((uint32_t)0x#hex)<CR>
+iab loca LOCa()<LEFT> 
+iab locb LOCb()<LEFT>
+iab locc LOCc()<LEFT>
 iab attr _attribute_
 
 iab vmain void main(){<CR>}<ESC>O
@@ -64,7 +72,7 @@ iab pf printf("\n");<LEFT><LEFT><LEFT><LEFT><LEFT>
 iab pfi printf("%\n",);<LEFT><LEFT><LEFT><LEFT>
 iab sf scanf("%s",);<LEFT><LEFT><LEFT><LEFT>
 iab sfi scanf("%d",&);<LEFT><LEFT><LEFT><LEFT>
-iab irng (lb<a)&&(ub<a)
+iab irng (lb<=a)&&(a<=ub)
 iab orng (lb<a)&&(ub>b)
 
 iab elif else if{<CR>}<ESC>O
@@ -73,6 +81,7 @@ iab ee extern
 iab vv volatile 
 iab rr register
 iab ss static
+iab cc const
 
 iab sof sizeof()<LEFT>
 iab tdf typedef
@@ -82,8 +91,9 @@ iab stt struct
 iab stb struct{};<LEFT><LEFT>
 iab stnl struct{<CR>};<ESC>O
 
-iab cc char
+iab ch char
 iab ccc const char
+iab cccp const char*
 iab ccp (*char)
 iab ii int
 iab iip (*int)
